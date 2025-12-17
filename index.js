@@ -8,6 +8,7 @@ const Appointments = require("./db/Appointment")
 const Doctors = require("./db/Doctor")
 const Categorie = require('./db/Categorie');
 const multer = require('multer');
+const port = process.env.PORT || 5000;
 app.use(express.json())
 app.use(cors());
 app.post('/register',async (req,res)=>{
@@ -90,4 +91,6 @@ app.post('/updateimg/:id',upload,async(req,res)=>{
         {$set:{src:req.file.originalname}})
     res.send(result)
 })
-app.listen(5000);
+app.listen(port,"0.0.0.0",()=>{
+    console.log(`Server running on port : ${port}`);
+});
